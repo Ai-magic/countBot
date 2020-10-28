@@ -3,7 +3,7 @@ const Keyv = require('keyv');
 const keyv=new Keyv();
 const client=new Discord.Client();
 const prefix='';
-client.once('ready', () =>{
+client.once('ready', async () =>{
     console.log('Bot is on');
     await keyv.set('num',0);
     await keyv.set('multiplyer',1);
@@ -41,7 +41,7 @@ client.on('message', async message=>{
                 return;
             }
         }else if(command=="number"){
-            message.channel.send(await keyv.get('num'));
+            message.channel.send(await keyv.get('num')+" "+await keyv.get('multiplyer'));
             return;
         }
         //id===null || message.author.id!=id ||
@@ -55,7 +55,7 @@ client.on('message', async message=>{
                         return;
                 }else{
                     message.delete();
-                    message.channel.send("Next number is "+await keyv.get('num')+" not "+message);
+                    message.channel.send("Next number is "+(await keyv.get('num'))+(await keyv.get('multiplyer'))+" not "+message);
                 }
         }
         id=message.author.id;
