@@ -5,9 +5,6 @@ const client=new Discord.Client();
 const prefix='';
 client.once('ready', () =>{
     console.log('Bot is on');
-});
-var id=null;
-client.on('message', async message=>{
     await keyv.set('num',0);
     await keyv.set('multiplyer',1);
     await keyv.set('multiplyerCost',25);
@@ -17,6 +14,9 @@ client.on('message', async message=>{
     await keyv.set('superPrestigeCost',100);
     await keyv.set('prestige$',0);
     await keyv.set('superPrestige$',0);
+});
+var id=null;
+client.on('message', async message=>{
         const multiplyer=Math.ceil(await keyv.get('multiplyer')/2);
         const multiplyerCost=await keyv.get('multiplyerCost');
         var buy=[1];
