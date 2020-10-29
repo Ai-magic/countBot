@@ -27,7 +27,7 @@ client.on('message', async message=>{
     const args=message.content.slice(prefix.length).split(/ +/);
     const command= args.shift().toLowerCase();
     if(command=="shop"){
-        message.channel.send(shop+" ");
+        message.channel.send(shop);
         return;
     }else if(command==")buy 1"){
         if(await keyv.get('multyplierCost')<=await keyv.get('num')){
@@ -44,12 +44,7 @@ client.on('message', async message=>{
             message.channel.send(await keyv.get('num')+" "+await keyv.get('multiplyer'));
             return;
     }
-    //id===null || message.author.id!=id ||
-    /*}else if(id==message.author.id){
-        message.delete();
-        message.channel.send("NO DOUBLE POSTING");
-    }*/
-    if( (parseInt(command))){
+    if(/*id===null || message.author.id!=id ||*/(parseInt(command))){
             if(parseInt(command)==await keyv.get('num')+(await keyv.get('multiplyer'))){
                     await keyv.set('num',await keyv.get('num')+(await keyv.get('multiplyer')));
                     return;
@@ -57,6 +52,9 @@ client.on('message', async message=>{
                 message.delete();
                 message.channel.send("Next number is "+(await keyv.get('num'))+(await keyv.get('multiplyer'))+" not "+message);
             }
-    }
+    }/*else if(id==message.author.id){
+        message.delete();
+        message.channel.send("NO DOUBLE POSTING");
+    }*/
         id=message.author.id;
 });
